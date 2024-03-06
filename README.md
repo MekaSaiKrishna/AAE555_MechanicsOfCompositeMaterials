@@ -1,1 +1,1 @@
-# AAE555_MechanicsOfCompositeMaterials
+# AAE555: Mechanics Of Composite Materials
