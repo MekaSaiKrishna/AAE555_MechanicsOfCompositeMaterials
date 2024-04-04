@@ -70,7 +70,8 @@ fprintf(" E1       | %0.2f  GPa                  \n", vpa(E1_flex*1e-9,2))
 fprintf(" E2       | %0.2f  GPa                  \n", vpa(E2_flex*1e-9,2))
 fprintf(" nu12     | %0.2f  GPa                  \n", vpa(nu12_flex,2))
 fprintf(" G12      | %0.2f  GPa                  \n", vpa(G12_flex*1e-9,2))
-
+fprintf(" eta121   | %0.2f                       \n", vpa(eta121_flex,2))
+fprintf(" eta122   | %0.2f                       \n", vpa(eta122_flex,2))
 
 
 
