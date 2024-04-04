@@ -50,7 +50,7 @@ A = vpa(A,4) %in = (N/m^2)*m = (N/m)
 %--------------------------------------------------------------------------
 % Step-4: Find Effective Plane Stress Reduced Compliance Matrix [Se_star] 
 
-Se_star = (6*t)*inv(A); %in m^2/N
+Se_star = vpa((6*t)*inv(A)); %in m^2/N
 
 %--------------------------------------------------------------------------
 % Step-5: Effective In-plane Properties
@@ -61,14 +61,14 @@ Se_star = (6*t)*inv(A); %in m^2/N
 %% ------------------------------------------------
 % USE HROM MATLAB CODE FROM PREVIOUS HOMEWORK
 
-% Step-1: Find Q for each Layer
-
 % Step-2: Find Qstar 
+Qstar = (1/6)*(Q1+Q2+Q3+Q4+Q5+Q6);
 
 % Step-3: Se_star = inv(Qstar)
+Se_star_HROM = inv(Qstar);
 
 % Step-4: Compute effective engineering constants from Se_star 
-
+[E1_HROM,E2_HROM,nu12_HROM,G12_HROM,eta121_HROM,eta122_HROM] = findEffInPlane(Se_star);
 
 
 % Note: assume any value for the rest of the material properties needed 
@@ -81,15 +81,6 @@ Se_star = (6*t)*inv(A); %in m^2/N
 % Print Results
 
 
-% !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-% Change this after implementing HROM in the code!!!
-
-E1_HROM   = E1_star;
-E2_HROM   = E2_star;
-nu12_HROM = nu12_star;
-G12_HROM  = G12_star;
-% !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 fprintf("      Effective In-Plane Properties     \n")
 fprintf(" ====================================== \n")
 fprintf(" Prop     |      CLT    |      HROM     \n")
@@ -98,6 +89,8 @@ fprintf(" E1       | %0.2f  GPa  | %0.2f GPa     \n", vpa(E1_star*1e-9,2), vpa(E
 fprintf(" E2       | %0.2f  GPa  | %0.2f GPa     \n", vpa(E2_star*1e-9,2), vpa(E2_HROM*1e-9,2))
 fprintf(" nu12     | %0.2f        | %0.2f        \n", vpa(nu12_star,2), vpa(nu12_HROM,2))
 fprintf(" G12      | %0.2f  GPa  | %0.2f GPa     \n", vpa(G12_star*1e-9,2), vpa(G12_HROM*1e-9,2))
+fprintf(" eta121   | %0.2f        | %0.2f        \n", vpa(eta121_star,2), vpa(eta121_HROM,2))
+fprintf(" eta122   | %0.2f        | %0.2f        \n", vpa(eta122_star,2), vpa(eta122_HROM,2))
 
 
 
